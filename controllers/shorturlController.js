@@ -42,3 +42,29 @@ const redirectUrl = async (req, res) => {
 };
 
 module.exports = { createShortUrl, redirectUrl };
+
+
+
+
+
+
+
+
+
+// const redirectUrl = async (req, res) => {
+//   try {
+//       const perams = req.params.id
+//     if (!perams) return res.status(404).json({message: "URL not found"});
+    
+//     const urlData = await shortuserSchema.findOne({ urlShort: perams });
+
+//     if (!urlData) return res.redirect(process.env.CLIENT_URL + '/' + perams);
+
+//     res.redirect(urlData.urlLong);
+//   } catch (error) {
+//     res.status(500).send({ message: `Internal servert error ${error}` });
+//   }
+// };
+
+// module.exports = { createShortUrl, redirectUrl };
+
