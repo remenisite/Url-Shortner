@@ -1,5 +1,6 @@
 const userSchema = require("../models/userSchema");
 const { isvalidEmail, isvalidPassword } = require("../utils/validation");
+const jwt = require("jsonwebtoken");
 
 const signup = async (req, res) => {
   const { fullName, email, password } = req.body;
@@ -42,9 +43,10 @@ const signin = async (req, res) => {
     const userPass = await exixtingUser.comparePassword(password);
     if (!userPass)
       return res.status(400).send({ message: "incurrect password" });
-
-    console.log(userPass);
-
+    const token = jwt.sign(
+      { id: exixtingUser._id, email: exixtingUser.email },
+      process.env.JWT_SEC
+    );
     res.status(200).send({ message: "successfully login" });
   } catch (error) {
     res.send(error);

@@ -44,13 +44,6 @@ const redirectUrl = async (req, res) => {
 module.exports = { createShortUrl, redirectUrl };
 
 
-
-
-
-
-
-
-
 // const redirectUrl = async (req, res) => {
 //   try {
 //       const perams = req.params.id
