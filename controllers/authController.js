@@ -44,7 +44,7 @@ const signin = async (req, res) => {
     if (!userPass)
       return res.status(400).send({ message: "incurrect password" });
 
-    const token = jwt.sign({ foo: "bar" }, process.env.JW );
+    const token = jwt.sign({ id:exixtingUser._id , email: exixtingUser.email }, process.env.JWT_SEC);
 
     console.log(token)
 
