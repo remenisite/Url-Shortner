@@ -43,7 +43,7 @@ const signin = async (req, res) => {
     const userPass = await exixtingUser.comparePassword(password);
     if (!userPass)
       return res.status(400).send({ message: "incurrect password" });
-    const token = jwt.sign( { id: exixtingUser._id, email: exixtingUser.email }, process.env.JWT_SEC );
+    const token = jwt.sign( { id: exixtingUser._id, email: exixtingUser.email }, process.env.JWT_SEC);
     console.log(token)
     res.status(200).send({ message: "successfully login" });
   } catch (error) {
