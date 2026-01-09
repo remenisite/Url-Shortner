@@ -46,9 +46,8 @@ const signin = async (req, res) => {
 
     const token = jwt.sign({ id:exixtingUser._id , email: exixtingUser.email }, process.env.JWT_SEC);
 
-    console.log(token)
 
-    res.status(200).send({ message: "successfully login" });
+    res.status(200).send({ message: "successfully login" , acc_token:token });
   } catch (error) {
     res.status(500).send({ message: "internal server error" });
     console.log(error);
