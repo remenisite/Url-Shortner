@@ -4,12 +4,10 @@ const { isvalidUrl } = require("../utils/validation");
 
 const createShortUrl = async (req, res) => {
   const { urlLong } = req.body;
-
   try {
     if (!urlLong) {
       return res.status(400).send({ message: "give url" });
     }
-
 
     if (!isvalidUrl(urlLong)) {
       return res.status(400).send({ message: "give valid url" });

@@ -42,14 +42,12 @@ const signin = async (req, res) => {
     if (!userPass)
       return res.status(400).send({ message: "incurrect password" });
 
-    const token = generateAccTkn({
-      id: exixtingUser._id,
-      email: exixtingUser.email,
-    });
+    const token = jwt.sign(
+      { id: exixtingUser._id, email: exixtingUser.email },
+      process.env.JWT_SEC
+    );
 
-    res.cookie("acc_token", token);
-
-    console.log(token);
+    console.log(token)
 
     res.status(200).send({ message: "successfully login" });
   } catch (error) {

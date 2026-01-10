@@ -1,8 +1,12 @@
 const jwt = require("jsonwebtoken");
 
 const generateAccTkn = (payload) => {
-  const token = jwt.sign(payload, process.env.JWT_SEC);
-  return token;
+  try {
+    const token = jwt.sign(payload, process.env.JWT_SEC);
+    return token;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const verifyTkn = (token) => {
