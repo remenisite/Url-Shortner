@@ -1,6 +1,8 @@
-const authMiddle = (req,res,next) = ()=>{
-    const token = req.cookies.acc_token
-    console.log(token)
-}
+// const authMiddle =(req,res,next)=>{
+//     const token = req.cookies.acc_token
+//     console.log("token" , token)
 
-module.exports = {authMiddle};s
+//     next()
+// }
+
+// module.exports = {authMiddle};

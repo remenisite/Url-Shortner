@@ -6,6 +6,10 @@ const createShortUrl = async (req, res) => {
   const { urlLong } = req.body;
   try {
     if (!urlLong) {
+      const token = req.cookies;
+
+      console.log("token" , token)
+
       return res.status(400).send({ message: "give url" });
     }
 
