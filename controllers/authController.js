@@ -1,10 +1,8 @@
 const userSchema = require("../models/userSchema");
 const { isvalidEmail, isvalidPassword } = require("../utils/validation");
-const jwt = require("jsonwebtoken");
 
 const signup = async (req, res) => {
   const { fullName, email, password } = req.body;
-
   try {
     if (!fullName) return res.status(400).send("fullName required");
     if (!email) return res.status(400).send("email required");
@@ -38,18 +36,21 @@ const signin = async (req, res) => {
       return res.status(400).send("password not valid");
 
     const exixtingUser = await userSchema.findOne({ email });
-    if (!exixtingUser) return res.status(400).send({ message: "user not found" });
+    if (!exixtingUser)
+      return res.status(400).send({ message: "user not found" });
 
     const userPass = await exixtingUser.comparePassword(password);
     if (!userPass)
       return res.status(400).send({ message: "incurrect password" });
 
-    const token = jwt.sign({ id:exixtingUser._id , email: exixtingUser.email }, process.env.JWT_SEC);
+    const token = jwt.sign(
+      { id: exixtingUser._id, email: exixtingUser.email },
+      process.env.JWT_SEC
+    );
 
+    res.cookie("acc_token", token);
 
-    res.cookie('acc_token' , token)
-
-    res.status(200).send({ message: "successfully login" , acc_token:token });
+    res.status(200).send({ message: "successfully login" });
   } catch (error) {
     res.status(500).send({ message: "internal server error" });
     console.log(error);
