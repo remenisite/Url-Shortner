@@ -1,4 +1,5 @@
 const userSchema = require("../models/userSchema");
+const generateAccTkn = require("../utils/tokens");
 const { isvalidEmail, isvalidPassword } = require("../utils/validation");
 
 const signup = async (req, res) => {
@@ -40,6 +41,11 @@ const signin = async (req, res) => {
     const userPass = await exixtingUser.comparePassword(password);
     if (!userPass)
       return res.status(400).send({ message: "incurrect password" });
+
+    const token = generateAccTkn({ id: exixtingUser._id, email: exixtingUser.email });
+
+    res.cookie("acc_token" , token)
+
     res.status(200).send({ message: "successfully login" });
   } catch (error) {
     res.status(500).send({ message: "internal server error" });
