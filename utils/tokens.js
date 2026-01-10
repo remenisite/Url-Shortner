@@ -5,12 +5,10 @@ const generateAccTkn = (payload) => {
   return token;
 };
 
-
-const verifyTkn = (token)=>{
-
+const verifyTkn = (token) => {
   const decoded = jwt.verify(token, process.env.JWT_SEC);
 
-}
+  return decoded;
+};
 
-
-module.exports = generateAccTkn;
+module.exports = { generateAccTkn, verifyTkn };
