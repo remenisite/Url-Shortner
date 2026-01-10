@@ -2,6 +2,8 @@ const userSchema = require("../models/userSchema");
 const generateAccTkn = require("../utils/tokens");
 const { isvalidEmail, isvalidPassword } = require("../utils/validation");
 
+const jwt = require("jsonwebtoken");
+
 const signup = async (req, res) => {
   const { fullName, email, password } = req.body;
   try {
@@ -42,12 +44,10 @@ const signin = async (req, res) => {
     if (!userPass)
       return res.status(400).send({ message: "incurrect password" });
 
-    const token = jwt.sign(
-      { id: exixtingUser._id, email: exixtingUser.email },
-      process.env.JWT_SEC
-    );
 
-    console.log(token)
+    res.cookie("acc_token", token);
+
+    console.log(token);
 
     res.status(200).send({ message: "successfully login" });
   } catch (error) {
