@@ -10,6 +10,7 @@ const createShortUrl = async (req, res) => {
       return res.status(400).send({ message: "give url" });
     }
 
+
     if (!isvalidUrl(urlLong)) {
       return res.status(400).send({ message: "give valid url" });
     }
@@ -34,7 +35,8 @@ const redirectUrl = async (req, res) => {
     const perams = req.perams;
     if (!perams) return;
     const urlData = await shortuserSchema.findOne({ urlShort: perams.id });
-    if (!urlData) return res.redirect(process.env.CLIENT_URL + urlData.urlShort);
+    if (!urlData)
+      return res.redirect(process.env.CLIENT_URL + urlData.urlShort);
     res.redirect(urlData.urlLong);
   } catch (error) {
     res.status(500).send({ message: "server error" });
@@ -43,12 +45,11 @@ const redirectUrl = async (req, res) => {
 
 module.exports = { createShortUrl, redirectUrl };
 
-
 // const redirectUrl = async (req, res) => {
 //   try {
 //       const perams = req.params.id
 //     if (!perams) return res.status(404).json({message: "URL not found"});
-    
+
 //     const urlData = await shortuserSchema.findOne({ urlShort: perams });
 
 //     if (!urlData) return res.redirect(process.env.CLIENT_URL + '/' + perams);
@@ -60,4 +61,3 @@ module.exports = { createShortUrl, redirectUrl };
 // };
 
 // module.exports = { createShortUrl, redirectUrl };
-
