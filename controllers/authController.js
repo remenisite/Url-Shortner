@@ -34,22 +34,12 @@ const signin = async (req, res) => {
     if (!password) return res.status(400).send("password required");
     if (!isvalidPassword(password))
       return res.status(400).send("password not valid");
-
     const exixtingUser = await userSchema.findOne({ email });
     if (!exixtingUser)
       return res.status(400).send({ message: "user not found" });
-
     const userPass = await exixtingUser.comparePassword(password);
     if (!userPass)
       return res.status(400).send({ message: "incurrect password" });
-
-    const token = jwt.sign(
-      { id: exixtingUser._id, email: exixtingUser.email },
-      process.env.JWT_SEC
-    );
-
-    res.cookie("acc_token", token);
-
     res.status(200).send({ message: "successfully login" });
   } catch (error) {
     res.status(500).send({ message: "internal server error" });
