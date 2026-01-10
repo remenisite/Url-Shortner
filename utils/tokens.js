@@ -5,4 +5,12 @@ const generateAccTkn = (payload) => {
   return token;
 };
 
+
+const verifyTkn = (token)=>{
+
+  const decoded = jwt.verify(token, process.env.JWT_SEC);
+
+}
+
+
 module.exports = generateAccTkn;
