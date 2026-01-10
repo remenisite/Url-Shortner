@@ -1,5 +1,5 @@
 const userSchema = require("../models/userSchema");
-const generateAccTkn = require("../utils/tokens");
+const { createTkn } = require("../utils/tokens");
 const { isvalidEmail, isvalidPassword } = require("../utils/validation");
 
 const jwt = require("jsonwebtoken");
@@ -44,10 +44,12 @@ const signin = async (req, res) => {
     if (!userPass)
       return res.status(400).send({ message: "incurrect password" });
 
+    const token = createTkn({
+      id: exixtingUser._id,
+      email: exixtingUser.email,
+    });
 
     res.cookie("acc_token", token);
-
-    console.log(token);
 
     res.status(200).send({ message: "successfully login" });
   } catch (error) {
