@@ -1,15 +1,12 @@
 const express = require("express");
 const dbConfig = require("./dbConfig");
 require("dotenv").config();
-const  route  = require("./routes");
+const route = require("./routes");
 const app = express();
 
+dbConfig();
 app.use(express.json());
-
-dbConfig()
-app.use(route)
-
-
+app.use(route);
 
 app.listen(8000, () => {
   console.log(`server ok`);
