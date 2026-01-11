@@ -1,11 +1,10 @@
 const isvelidEmail = (email) => {
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailPattern.test(email);
 };
 
 const isvalidPassword = (password) => {
-  const passwordPattern =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const passwordPattern = /^(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{6,16}$/;
   return passwordPattern.test(password);
 };
 
