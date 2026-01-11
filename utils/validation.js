@@ -1,18 +1,12 @@
-const isvalidEmail = (email) => {
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailPattern.test(email);
+const isvelidEmail = (email) => {
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/;
+  return emailPattern(email);
 };
 
 const isvalidPassword = (password) => {
-  const passwordPattern = /^(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{6,16}$/;
-  return passwordPattern.test(password);
+  const passwordPattern =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  return passwordPattern(password);
 };
 
-const isvalidUrl = (urlLong) => {
-  const urlPattern =
-    /^(https?:\/\/|www\.|https?|www)([-a-zA-Z0-9@:%._+~#=]{1,256}(\.[a-zA-Z0-9()]{1,6})?\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)?)?$/i;
-
-  return urlPattern.test(urlLong);
-};
-
-module.exports = { isvalidEmail, isvalidPassword , isvalidUrl };
+module.exports = { isvelidEmail, isvalidPassword };

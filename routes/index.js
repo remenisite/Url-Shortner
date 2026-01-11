@@ -1,21 +1,17 @@
 const express = require("express");
-const route = express.Router();
+const routes = express.Router();
 const authRoute = require("./auth");
-const urlShortRoute = require("./shortner");
-const { redirectUrl } = require("../controllers/shorturlController");
+const urlRoute = require("./url");
 
-route.get("/", (req, res) => {
-  res.send("home");
+routes.get("/", (req, res) => {
+  res.status(200).send({ message: "hello" });
 });
 
-route.use("/auth", authRoute);
+routes.use("/auth", authRoute);
+routes.use("/url", urlRoute);
 
-route.use("/url", urlShortRoute);
-
-route.get("/:id", redirectUrl);
-
-route.use((req, res) => {
-  res.send("404 not found");
+routes.use((req, res) => {
+  res.status(400).send({ message: "400 not found!" });
 });
 
-module.exports = route;
+module.exports = routes;

@@ -1,14 +1,18 @@
 const express = require("express");
 const dbConfig = require("./dbConfig");
-require("dotenv").config();
-const cookieParser = require('cookie-parser')
+const { route } = require("./routes");
 const app = express();
-const route = require("./routes");
-const { isvalidUrl } = require("./utils/validation");
+require("dotenv").config();
+
 app.use(express.json());
-app.use(cookieParser())
-dbConfig();
-app.use(route);
-app.listen(5000, () => {
-  console.log("server ok");
+
+dbConfig()
+app.use(route)
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.listen(8000, () => {
+  console.log(`server ok`);
 });
