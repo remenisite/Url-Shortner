@@ -31,20 +31,34 @@ const signup = async (req, res) => {
   }
 };
 
+
+
 const signin = async (req, res) => {
-  const { email, password } = req.body;
-  if (!email) return res.status(400).send({ message: "give email" });
-  if (!isvelidEmail(email))
-    return res.status(400).send({ message: "give valid email" });
-  if (!password) return res.status(400).send({ message: "give password" });
-  if (!isvalidPassword(password))
-    return res.status(400).send({ message: "give valid password" });
+  try {
+    const { email, password } = req.body;
 
-  const exixtingUser = await userSchema.findOne({ email });
-  if (!exixtingUser)
-    return res.status(400).send({ message: "User not found!" });
+    if (!email) return res.status(400).send({ message: "give email" });
+    if (!isvelidEmail(email))
+      return res.status(400).send({ message: "give valid email" });
+    if (!password) return res.status(400).send({ message: "give password" });
+    if (!isvalidPassword(password))
+      return res.status(400).send({ message: "give valid password" });
 
-  res.status(200).send("signin sucessfully");
+    const existingUser = await userSchema.findOne({ email });
+    if (!existingUser)
+      return res.status(401).send({ message: "User not found!" });
+
+    const matchPass = await existingUser.comparePassword(password);
+    if (!matchPass)
+      return res.status(401).send({ message: "Incorrect password" });
+
+    res.status(200).send("signin successfully");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: "Server error" });
+  }
 };
+
+
 
 module.exports = { signin, signup };
