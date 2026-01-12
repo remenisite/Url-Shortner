@@ -6,7 +6,6 @@ const dbConfig = () => {
       .then(() => console.log("database ok"));
 };
 
-
 module.exports = dbConfig
 
 
