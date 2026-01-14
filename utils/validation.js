@@ -8,4 +8,10 @@ const isvalidPassword = (password) => {
   return passwordPattern.test(password);
 };
 
-module.exports = { isvelidEmail, isvalidPassword };
+const isvalidUrl = (urlLong) => {
+  const urlPattern =
+    /^(https?:\/\/|www\.|https?|www)([-a-zA-Z0-9@:%._+~#=]{1,256}(\.[a-zA-Z0-9()]{1,6})?\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)?)?$/i;
+  return urlPattern.test(urlLong);
+};
+
+module.exports = { isvelidEmail, isvalidPassword , isvalidUrl };
