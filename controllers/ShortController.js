@@ -27,4 +27,9 @@ const createShortUrl = async (req, res) => {
   }
 };
 
+
+const redirectUrl = async (req,res)=>{
+  
+}
+
 module.exports = createShortUrl;
