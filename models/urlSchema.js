@@ -13,7 +13,6 @@ const urlSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: "user",
   },
-
   visitHistory: [
     {
       visitTime: {

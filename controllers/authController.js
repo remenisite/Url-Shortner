@@ -24,14 +24,11 @@ const signup = async (req, res) => {
       password,
     });
     user.save();
-
     res.status(201).send({ message: "new user created" });
   } catch (error) {
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
-
 
 const signin = async (req, res) => {
   try {
@@ -58,7 +55,6 @@ const signin = async (req, res) => {
     res.status(500).send({ message: "Server error" });
   }
 };
-
 
 
 module.exports = { signin, signup };

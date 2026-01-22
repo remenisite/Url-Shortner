@@ -27,9 +27,9 @@ const createShortUrl = async (req, res) => {
   }
 };
 
+const redirectUrl = (req, res) => {
+  const perams = req.body;
+  res.send(perams);
+};
 
-const redirectUrl = async (req,res)=>{
-  
-}
-
-module.exports = createShortUrl;
+module.exports = {createShortUrl , redirectUrl} ;
