@@ -28,8 +28,10 @@ const createShortUrl = async (req, res) => {
 };
 
 const redirectUrl = (req, res) => {
-  const perams = req.body;
-  res.send(perams);
+  const params = req.body;
+
+  if(!params.id) return
+
 };
 
-module.exports = {createShortUrl , redirectUrl} ;
+module.exports = { createShortUrl , redirectUrl };
