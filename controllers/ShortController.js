@@ -28,19 +28,19 @@ const createShortUrl = async (req, res) => {
 };
 
 const redirectUrl = async (req, res) => {
-try {
-  
+  try {
     const params = req.params;
 
-  if (!params) return res.status(400).send({ message: "params not found" });
+    if (!params) return res.status(400).send({ message: "params not found" });
 
-  const urlData = await urlSchema.findOne({ urlShort: params.id });
-  if(!urlData) return res.redirect(process.env.CLIENT_URL + urlData.urlShort)
- 
-  res.redirect(urlData.urlLong);
-} catch (error) {
-   res.status(500).send({ message: "Internal server error" });
-}
+    const urlData = await urlSchema.findOne({ urlShort: params.id });
+    if (!urlData)
+      return res.redirect(process.env.CLIENT_URL + urlData.urlShort);
+
+    res.redirect(urlData.urlLong);
+  } catch (error) {
+    res.status(500).send({ message: "Internal server error" });
+  }
 };
 
 module.exports = { createShortUrl, redirectUrl };
