@@ -11,9 +11,7 @@ routes.get("/", (req, res) => {
 routes.use("/auth", authRoute);
 routes.use("/url", urlRoute);
 
-routes.get("/:id" , (req,res)=>{
-res.send('hello')
-} )
+routes.get("/:id" , redirectUrl )
 
 routes.use((req, res) => {
   res.status(400).send({ message: "400 not found!" });

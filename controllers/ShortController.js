@@ -27,11 +27,14 @@ const createShortUrl = async (req, res) => {
   }
 };
 
-const redirectUrl = (req, res) => {
-  const params = req.body;
+const redirectUrl = async (req, res) => {
+  const params = req.params;
 
-  if(!params.id) return
+  if (!params) return res.status(400).send({ message: "params not found" });
 
+  const urlData = await urlSchema.findOne({ urlShort: params.id });
+
+  res.redirect(urlData.urlLong);
 };
 
-module.exports = { createShortUrl , redirectUrl };
+module.exports = { createShortUrl, redirectUrl };
