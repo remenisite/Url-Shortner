@@ -43,8 +43,9 @@ const signin = async (req, res) => {
       return res.status(400).send({ message: "give valid password" });
 
     const existingUser = await userSchema.findOne({ email });
+
     if (!existingUser)
-      return res.status(401).send({ message: "User not found!" });
+      return res.status(401).send({ message: "User not found!" }); 
 
     const matchPass = await existingUser.comparePassword(password);
     if (!matchPass)
@@ -52,12 +53,14 @@ const signin = async (req, res) => {
 
     const token = jwt.sign(
       { id: existingUser._id, email: existingUser.email },
-      process.env.JWT_SEC,
+      process.env.JWT_SEC
     );
 
-    console.log(token);
+    console.log(token)
 
-    res.status(200).send("signin successfully");
+
+
+    res.status(200).send({message: "signin sucessfully" , acc_token:token});
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Server error" });
