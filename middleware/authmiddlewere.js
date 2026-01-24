@@ -1,10 +1,18 @@
 const { verifyTkn } = require("../utils/helpers");
 
 const authMiddle = (req, res, next) => {
-  const token = req.cookies.acc_token;
-  const decoded = verifyTkn(token);
-  console.log("token", decoded);
-  next();
+  try {
+    const token = req.headers.acc_token;
+    if (!token) return res.status(400).send({ message: "Invalid token" });
+
+    const decoded = verifyTkn(token);
+
+    req.user = decoded;
+
+    next();
+  } catch (error) {
+    next();
+  }
 };
 
 module.exports = { authMiddle };
