@@ -56,8 +56,8 @@ const getAllUrl = async (req, res) => {
   try {
     const user = req.user;
 
-    const urlHistory = await urlSchema.find({ user: user.id });
-    console.log(urlHistory);
+    const urlHistory = await urlSchema.find({ user: user.id }).select("-user");
+    res.status(200).send(urlHistory);
   } catch (error) {
     res.status(500).send({ message: "Internal server error" });
   }
