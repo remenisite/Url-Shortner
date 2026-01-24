@@ -1,4 +1,5 @@
 const userSchema = require("../models/userSchema");
+const { generateTkn } = require("../utils/helpers");
 const { isvelidEmail, isvalidPassword } = require("../utils/validation");
 const bcrypt = require("bcrypt");
 
@@ -44,17 +45,20 @@ const signin = async (req, res) => {
     const existingUser = await userSchema.findOne({ email });
 
     if (!existingUser)
-      return res.status(401).send({ message: "User not found!" }); 
+      return res.status(401).send({ message: "User not found!" });
 
     const matchPass = await existingUser.comparePassword(password);
     if (!matchPass)
       return res.status(401).send({ message: "Incorrect password" });
 
+    const token = generateTkn({
+      id: existingUser._id,
+      email: existingUser.email,
+    });
 
+    res.cookie("acc_token", token)
 
-
-
-    res.status(200).send({message: "signin sucessfully" , acc_token:token});
+    res.status(200).send({ message: "signin sucessfully",  });
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Server error" });
