@@ -6,9 +6,10 @@ const generateTkn = (payload) => {
   return token;
 };
 
+const verifyTkn = (token) => {
+  const decoded = jwt.verify(token, process.env.JWT_SEC);
 
-const verifyTkn = ()=>{
-  const decoded = jwt.verify(token, process.env.JWT_SEC );
-}
+  return decoded;
+};
 
-module.exports = { generateTkn , verifyTkn };
+module.exports = { generateTkn, verifyTkn };

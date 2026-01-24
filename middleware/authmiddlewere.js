@@ -1,7 +1,10 @@
+const { verifyTkn } = require("../utils/helpers");
+
 const authMiddle = (req, res, next) => {
   const token = req.cookies.acc_token;
-  console.log("token", token);
-  next()
+  const decoded = verifyTkn(token);
+  console.log("token", decoded);
+  next();
 };
 
 module.exports = { authMiddle };
