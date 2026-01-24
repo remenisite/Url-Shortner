@@ -56,9 +56,9 @@ const signin = async (req, res) => {
       email: existingUser.email,
     });
 
-    res.cookie("acc_token", token)
+    res.cookie("acc_token", token);
 
-    res.status(200).send({ message: "signin sucessfully",  });
+    res.status(200).send({ message: "signin sucessfully" });
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Server error" });
