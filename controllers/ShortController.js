@@ -13,9 +13,10 @@ const createShortUrl = async (req, res) => {
 
     const urlShort = generateRandmonStr();
 
-    const urlData = urlSchema({
+    const urlData = new urlSchema({
       urlLong,
       urlShort,
+      user: req.user?.id,
     });
     urlData.save();
 
@@ -38,10 +39,28 @@ const redirectUrl = async (req, res) => {
     if (!urlData)
       return res.redirect(process.env.CLIENT_URL + urlData.urlShort);
 
+    console.log(urlData);
+
+    if (urlData.user) {
+      urlData.visitHistory.push({ visitTime: Date.now() });
+      urlData.save();
+    }
+
     res.redirect(urlData.urlLong);
   } catch (error) {
     res.status(500).send({ message: "Internal server error" });
   }
 };
 
-module.exports = { createShortUrl, redirectUrl };
+const getAllUrl = async (req, res) => {
+  try {
+    const user = req.user;
+
+    const urlHistory = await urlSchema.find({ user: user.id });
+    console.log(urlHistory);
+  } catch (error) {
+    res.status(500).send({ message: "Internal server error" });
+  }
+};
+
+module.exports = { createShortUrl, redirectUrl, getAllUrl };
