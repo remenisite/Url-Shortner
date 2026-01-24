@@ -1,6 +1,8 @@
 const userSchema = require("../models/userSchema");
 const { isvelidEmail, isvalidPassword } = require("../utils/validation");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
+
 
 const signup = async (req, res) => {
   try {
@@ -48,6 +50,8 @@ const signin = async (req, res) => {
     const matchPass = await existingUser.comparePassword(password);
     if (!matchPass)
       return res.status(401).send({ message: "Incorrect password" });
+
+
 
     res.status(200).send("signin successfully");
   } catch (err) {
