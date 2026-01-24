@@ -11,6 +11,8 @@ const isAuth = (req, res, next) => {
   }
 };
 
+// ================================= extra feature ==========================================
+
 const authMiddle = (req, res, next) => {
   try {
     const token = req.headers.acc_token;

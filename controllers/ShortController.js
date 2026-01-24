@@ -56,9 +56,13 @@ const getAllUrl = async (req, res) => {
   try {
     const user = req.user;
 
-    const urlHistory = await urlSchema.find({ user: user.id }).select("-user");
+    const urlHistory = await urlSchema
+      .find({ user: user.id })
+      //.populate("user");        --------------------------------- gat user information
+      .select("-user");
     res.status(200).send(urlHistory);
   } catch (error) {
+    console.log(error);
     res.status(500).send({ message: "Internal server error" });
   }
 };

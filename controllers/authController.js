@@ -71,6 +71,7 @@ const getProfile = async (req, res) => {
 
     const userData = await userSchema.findById(user.id);
     if (!userData) return res.status(404).send("User data not found");
+    res.status(200).send(userData);
   } catch (error) {
     res.status(500).send({ message: "Internal server error" });
   }
