@@ -1,7 +1,6 @@
 const userSchema = require("../models/userSchema");
 const { isvelidEmail, isvalidPassword } = require("../utils/validation");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 const signup = async (req, res) => {
   try {
@@ -51,12 +50,7 @@ const signin = async (req, res) => {
     if (!matchPass)
       return res.status(401).send({ message: "Incorrect password" });
 
-    const token = jwt.sign(
-      { id: existingUser._id, email: existingUser.email },
-      process.env.JWT_SEC
-    );
 
-    console.log(token)
 
 
 
