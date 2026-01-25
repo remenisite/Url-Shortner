@@ -1,9 +1,14 @@
 import React from 'react'
+import Navbar from './Navbar'
+import { Outlet } from 'react-router'
 
-const Index = () => {
+const Layout = () => {
   return (
-    <div>Index</div>
+    <>
+      <Navbar />
+      <Outlet />
+    </>
   )
 }
 
-export default Index
+export default Layout

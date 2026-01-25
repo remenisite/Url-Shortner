@@ -2,6 +2,8 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import Register from './pages/Register'
 import Login from './pages/Login'
+import Layout from './components/layout'
+import Home from './pages/Home'
 
 const App = () => {
   return (
@@ -9,6 +11,11 @@ const App = () => {
     <Routes>
       <Route path="/signup" element={<Register />} />
       <Route path="/signin" element={<Login />} />
+      <Route path="/" element={<Layout />} >
+      <Route index element={<Home /> } />
+
+
+      </Route>
     </Routes>
   </BrowserRouter>
   )

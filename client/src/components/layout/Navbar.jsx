@@ -1,23 +1,35 @@
-import { FaLink, FaRocket } from "react-icons/fa";
+import { FiZap, FiGlobe } from "react-icons/fi";
+import logo from "../../../public/logo.png";
+import { Link } from "react-router";
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between px-8 py-4 border-b border-white/10">
-      <div className="flex items-center gap-2 text-xl font-bold">
-        <FaLink className="text-emerald-400" />
-        <span>LinkSnap</span>
+    <nav className="bg-[#1F1F1F] py-[2px]">
+      <div className="container flex items-center justify-between">
+        {/* Left */}
+        <Link to={"/"}>
+          <img src={logo} alt="logo" width={60} />
+        </Link>
+
+        {/* Right */}
+        <div className="flex items-center gap-2 sm:gap-4">
+          {/* Language */}
+          <button className="hidden sm:flex items-center gap-1 text-xs sm:text-sm text-gray-300 hover:text-white">
+            <FiGlobe />
+            EN
+          </button>
+
+          {/* Login */}
+          <button className="px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-full border border-gray-600 text-gray-200 hover:bg-gray-700 transition">
+            Log In
+          </button>
+
+          {/* Sign Up */}
+          <button className="px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-full bg-lime-400 text-black font-medium hover:bg-lime-300 transition">
+            Sign Up
+          </button>
+        </div>
       </div>
-
-      <ul className="hidden md:flex gap-8 text-sm text-gray-300">
-        <li className="hover:text-white cursor-pointer">Features</li>
-        <li className="hover:text-white cursor-pointer">Pricing</li>
-        <li className="hover:text-white cursor-pointer">API</li>
-      </ul>
-
-      <button className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 px-4 py-2 rounded-lg text-sm">
-        <FaRocket />
-        Get Started
-      </button>
     </nav>
   );
 }
