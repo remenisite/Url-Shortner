@@ -1,7 +1,14 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap");
 
+@import "tailwindcss";
 
 @utility container {
   margin-inline: auto;
+}
 
+@theme {
+  --color-main: #1f1f1f;
+  --color-green:#BAFD70;
+  --color-primary:#7E7E7E;
+  --font-main: "Saira", sans-serif;
 }

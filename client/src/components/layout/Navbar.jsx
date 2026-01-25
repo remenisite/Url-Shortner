@@ -20,14 +20,16 @@ export default function Navbar() {
           </button>
 
           {/* Login */}
-          <button className="px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-full border border-gray-600 text-gray-200 hover:bg-gray-700 transition">
-            Log In
-          </button>
+          <Link to={"/signin"} className="px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-full border border-gray-600 text-gray-200 hover:bg-gray-700 transition" > Log In</Link>
 
           {/* Sign Up */}
-          <button className="px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-full bg-lime-400 text-black font-medium hover:bg-lime-300 transition">
+          <Link
+            to={"/signup"}
+            className="px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-full bg-lime-400 text-black font-medium hover:bg-lime-300 transition"
+          >
+            {" "}
             Sign Up
-          </button>
+          </Link>
         </div>
       </div>
     </nav>
