@@ -30,7 +30,7 @@ const UrlShortner = () => {
           />
           {/* Shorten Button */}
           <Button
-            label="Go"
+            label="Shortner"
             variant="primary"
             size="md"
             onClick={() => console.log("Go clicked")}
@@ -38,7 +38,7 @@ const UrlShortner = () => {
           />
         </form>
       </div>
-      <p className="text-xs text-gray-400">
+      <p className="text-[14px] font-normal font-main text-primary">
         By clicking 'Shorten URL', you agree to Tiny's Terms of Use and Privacy
         Policy.
       </p>

@@ -1,6 +1,9 @@
-import { FiZap, FiGlobe } from "react-icons/fi";
-// import logo from "../../../public/logo.png";
+import {  FiGlobe } from "react-icons/fi";
 import { Link } from "react-router";
+import { MdLightMode } from "react-icons/md";
+import { MdNightlight } from "react-icons/md";
+
+
 
 export default function Navbar() {
   return (
@@ -13,6 +16,7 @@ export default function Navbar() {
 
         {/* Right */}
         <div className="flex items-center gap-2 sm:gap-4">
+          <button className="hidden sm:flex items-center gap-1 text-xs sm:text-3xl text-gray-300 hover:text-white"><MdLightMode /></button>
           {/* Language */}
           <button className="hidden sm:flex items-center gap-1 text-xs sm:text-sm text-gray-300 hover:text-white">
             <FiGlobe />
