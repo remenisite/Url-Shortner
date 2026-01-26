@@ -1,5 +1,5 @@
 import { FiZap, FiGlobe } from "react-icons/fi";
-import logo from "../../../public/logo.png";
+// import logo from "../../../public/logo.png";
 import { Link } from "react-router";
 
 export default function Navbar() {
@@ -8,7 +8,7 @@ export default function Navbar() {
       <div className="container flex items-center justify-between">
         {/* Left */}
         <Link to={"/"}>
-          <img src={logo} alt="logo" width={60} />
+          <img src="/logo.png" alt="logo" width={60} />
         </Link>
 
         {/* Right */}
@@ -20,7 +20,13 @@ export default function Navbar() {
           </button>
 
           {/* Login */}
-          <Link to={"/signin"} className="px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-full border border-gray-600 text-gray-200 hover:bg-gray-700 transition" > Log In</Link>
+          <Link
+            to={"/signin"}
+            className="px-3 sm:px-4 py-1.5 text-xs sm:text-sm rounded-full border border-gray-600 text-gray-200 hover:bg-gray-700 transition"
+          >
+            {" "}
+            Log In
+          </Link>
 
           {/* Sign Up */}
           <Link

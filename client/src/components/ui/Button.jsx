@@ -1,7 +1,7 @@
 import React from "react";
 
 const Button = ({
-  label = "Click Me",
+  label = "",
   onClick = () => {},
   variant = "primary",
   size = "md",
@@ -16,9 +16,8 @@ const Button = ({
 
   // Variants
   const variants = {
-    primary: "bg-green text-main hover:bg-green-600 focus:ring-green-400",
-    secondary:
-      "bg-gray-200 text-main hover:bg-gray-300 focus:ring-gray-400",
+    primary: "bg-green text-main hover:bg-green-300 focus:ring-green-400",
+    secondary: "bg-gray-200 text-main hover:bg-gray-300 focus:ring-gray-400",
     outline:
       "border border-gray-400 text-main hover:bg-gray-100 focus:ring-gray-300",
     danger: "bg-red-500 text-white hover:bg-red-600 focus:ring-red-400",
@@ -28,7 +27,7 @@ const Button = ({
   const sizes = {
     sm: "px-3 py-1 text-sm ",
     md: "px-4 py-2 text-base ",
-    lg: "px-6 py-3 text-lg " ,
+    lg: "px-6 py-3 text-lg ",
   };
 
   return (
@@ -40,8 +39,8 @@ const Button = ({
         disabled ? "opacity-50 cursor-not-allowed" : ""
       }`}
     >
-      {Icon && <Icon size={18} />}
       {label}
+      {Icon && <Icon size={18} />}
     </button>
   );
 };
