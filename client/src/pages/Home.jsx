@@ -3,7 +3,7 @@ import UrlShortner from "../components/ui/UrlShortner";
 
 const Home = () => {
   return (
-    <div className="h-screen bg-white flex items-center justify-center ">
+    <div className=" flex justify-center  pt-[200px] ">
       <UrlShortner />
     </div>
   );
