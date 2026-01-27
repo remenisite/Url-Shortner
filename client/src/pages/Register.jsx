@@ -9,74 +9,61 @@ import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 
 const SignUp = () => {
+  const handelSubmit = async (e) => {
+    e.preventDefault();
+  }
   return (
-    <section className="min-h-screen flex justify-center items-center bg-white text-black">
-      <div className="w-full max-w-md p-6">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <div className="text-center w-full">
-            <h2 className="text-2xl font-bold font-poppins">
-              Create an account
-            </h2>
-            <p className="text-sm font-poppins">You are welcome!</p>
+    <section className="">
+      <div className="container flex flex-col justify-center items-center">
+        <h1 className="text-[50px] font-normal font-main text-main mt-[30px] mb-[31px]">
+          Create your account
+        </h1>
+        <div className=" w-[400px] bg-gray-50 shadow-2xs border border-amber-50 rounded-[6px] p-[20px]">
+          <form onSubmit={handelSubmit} action="">
+
+          {/* Input Fields */}
+          <Input label={"Full Name"} required  type="text" placeholder={"enter your full name........"}  />
+          <Input label={"E-mail"} type="email"   required placeholder={"Email"} />
+          <Input label={"Phone number"} type="tel"   required placeholder={"(+01)"} />
+          <Input label={"Password"} type="password"   required placeholder={"Password"} />
+          <Input label={"Confirm Password"} type="password"   required placeholder={"Confirm password"} />
+
+          <Button  variant="primary" label="Signup" type="submit"  size="md"   className="flex justify-center"  />
+          </form>
+          <div className="flex items-center gap-[10px] my-[30px]">
+            <input id="link" type="checkbox" className="text-[100px]" />
+            <label htmlFor="link" className="text-[14px] font-normal font-main text-main ">
+              I agree with terms & conditions
+            </label>
           </div>
-        </div>
-
-        {/* Input Fields */}
-        <Input
-          label={"Full Name"}
-          type="text"
-          placeholder={"enter your full name........"}
-        />
-        <Input label={"E-mail"} type="email" placeholder={"Email"} />
-        <Input label={"Phone number"} type="tel" placeholder={"(+01)"} />
-        <Input label={"Password"} type="password" placeholder={"Password"} />
-        <Input
-          label={"Confirm Password"}
-          type="password"
-          placeholder={"Confirm password"}
-        />
-
-        <Button
-          variant="primary"
-          label="Signup"
-          type="button"
-          size="md"
-          className="flex justify-center"
-        />
-
-        {/* Terms */}
-        <div className="flex items-center gap-2 mb-4">
-          <input type="checkbox" />
-          <p className="text-xs font-poppins">
-            I agree with terms & conditions
-          </p>
-        </div>
-
-        {/* Social Login */}
-        <div className="flex justify-between gap-4 mb-4">
-          <Link
-            to="/"
-            className="flex items-center gap-2 border px-4 py-3 rounded-md text-xs font-poppins w-1/2 justify-center"
-          >
-            <FcGoogle /> Google account
-          </Link>
-          <Link
-            to="/"
-            className="flex items-center gap-2 border px-4 py-3 rounded-md text-xs font-poppins w-1/2 justify-center"
-          >
-            <FaFacebook className="text-blue-600" /> Facebook account
-          </Link>
-        </div>
-
-        {/* Sign In Link */}
-        <div className="text-center">
-          <p className="text-sm font-poppins">
-            Already have an account?{" "}
-            <Link to="/signin" className="text-[#7364DB]">
-              Sign in
+          {/* Social Login */}
+          <div className="flex justify-between gap-4 mb-4">
+            <Link
+              to="/"
+              className="flex items-center gap-2 border px-4 py-3 rounded-md text-[12px] font-normal font-main text-main"
+            >
+              <FcGoogle /> Google account
             </Link>
-          </p>
+            <Link
+              to="/"
+              className="flex items-center gap-2 border px-4 py-3 rounded-md text-[12px] font-normal font-main text-main"
+            >
+              <FaFacebook className="text-blue-600" /> Facebook account
+            </Link>
+          </div>
+
+          {/* Sign In Link */}
+          <div className="text-center">
+            <p className="text-[15px] font-normal font-main text-main">
+              Already have an account?
+              <Link
+                to="/signin"
+                className="font-medium hover:border-b transition"
+              >
+                Sign in
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </section>
