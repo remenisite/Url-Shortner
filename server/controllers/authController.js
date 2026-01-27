@@ -61,7 +61,7 @@ const signin = async (req, res) => {
     res.status(200).send({ message: "signin sucessfully" });
   } catch (err) {
     console.error(err);
-    res.status(500).send({ message: "Server error" });
+    res.status(500).send({ message: "Internal Server error" });
   }
 };
 

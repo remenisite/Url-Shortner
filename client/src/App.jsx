@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 
 const App = () => {
   return (
+    <>
     <BrowserRouter>
       <Routes>
         <Route path="/signup" element={<Register />} />
@@ -16,6 +17,8 @@ const App = () => {
         </Route>
       </Routes>
     </BrowserRouter>
+    </>
+
   );
 };
 

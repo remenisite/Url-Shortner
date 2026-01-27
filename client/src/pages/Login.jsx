@@ -30,14 +30,7 @@ const Login = () => {
             placeholder={"Password"}
           />
           <div className="flex justify-between items-center my-[20px]">
-            {/* Sign In Button */}
-            <Button
-              variant="primary"
-              label=" Sign in"
-                type="submit"
-              size="md"
-              className="flex justify-center"
-            />
+        <Button type="submit" >Sign in</Button>
             {/* Remember Me + Forgot Password */}
             <Link
               to="/forgot-password"

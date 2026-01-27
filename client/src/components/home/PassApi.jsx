@@ -35,7 +35,7 @@ const PassApi = () => {
     <>
       <form
         onSubmit={handelService}
-        className="bg-[#ECECEC] border border-[#DDDDDD] rounded-full flex mt-[100px] mb-[23px]"
+        className="bg-[#ECECEC] border border-[#DDDDDD] rounded-md flex mt-[100px] mb-[23px]"
       >
         {/* Long URL Input */}
         <Input
@@ -46,17 +46,11 @@ const PassApi = () => {
           onChange={(e) => setLongUrl(e.target.value)}
         />
         {/* Shorten Button */}
-        <Button
-          type="submit"
-          label="Shorten URL  "
-          variant="primary"
-          size="md"
-          icon={FaArrowRight}
-        />
+        <Button type="primary" >Shortner <FaArrowRight /> </Button>
       </form>
       {shortUrl && (
         <div className="flex justify-center">
-            <div className="bg-[#ECECEC] border w-[650px]   mb-[30px] border-[#DDDDDD] rounded-full flex justify-between pl-[30px] items-center ">  
+            <div className="bg-[#ECECEC] border w-[650px]   mb-[30px] border-[#DDDDDD] rounded-md flex justify-between pl-[30px] items-center ">  
           <Link
             to={`${shortUrl}`}
             target="_blank"
@@ -65,8 +59,8 @@ const PassApi = () => {
             >
             {shortUrl}
           </Link>
-            <Button variant="black" label="get your link" onClick={handleCopy}>
-            {copied ? "Copied!" : "Copy"}
+         <Button variant="black" onClick={handleCopy}>
+            {copied ? "Copied!" : "get this link"}
           </Button>
               </div>
         </div>

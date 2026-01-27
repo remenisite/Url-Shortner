@@ -7,11 +7,21 @@ import { FiPhone, FiMoon } from "react-icons/fi";
 import { Link } from "react-router";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
+import { useForm } from "react-hook-form";
 
 const SignUp = () => {
-  const handelSubmit = async (e) => {
-    e.preventDefault();
-  }
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
+  console.log(errors)
+  
+  const onSubmit = (data) => console.log(data)
+
+  console.log(watch("example")) // watch input value by passing the name of it
+
   return (
     <section className="">
       <div className="container flex flex-col justify-center items-center">
@@ -19,20 +29,21 @@ const SignUp = () => {
           Create your account
         </h1>
         <div className=" w-[400px] bg-gray-50 shadow-2xs border border-amber-50 rounded-[6px] p-[20px]">
-          <form onSubmit={handelSubmit} action="">
-
-          {/* Input Fields */}
-          <Input label={"Full Name"} required  type="text" placeholder={"enter your full name........"}  />
-          <Input label={"E-mail"} type="email"   required placeholder={"Email"} />
-          <Input label={"Phone number"} type="tel"   required placeholder={"(+01)"} />
-          <Input label={"Password"} type="password"   required placeholder={"Password"} />
-          <Input label={"Confirm Password"} type="password"   required placeholder={"Confirm password"} />
-
-          <Button  variant="primary" label="Signup" type="submit"  size="md"   className="flex justify-center"  />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {/* Input Fields */}
+            <Input type="text"   {...register("firstName", {required: "Full Name is required"})}   label={"Full Name"}  placeholder={"enter your full name........"}/>
+            <Input  {...register("email", {required: "email is required"} )}    label={"E-mail"}    type="email"     placeholder={"Email"}/>
+            <Input    {...register("password" , {required: "password is required"})}   label={"Password"}        type="password"   placeholder={"Password"} />
+            <Input   label={"Confirm Password"}   type="password"    placeholder={"Confirm password"}    />
+            <Button type="submit">Create Account</Button>
+  
           </form>
           <div className="flex items-center gap-[10px] my-[30px]">
             <input id="link" type="checkbox" className="text-[100px]" />
-            <label htmlFor="link" className="text-[14px] font-normal font-main text-main ">
+            <label
+              htmlFor="link"
+              className="text-[14px] font-normal font-main text-main "
+            >
               I agree with terms & conditions
             </label>
           </div>
@@ -58,7 +69,7 @@ const SignUp = () => {
               Already have an account?
               <Link
                 to="/signin"
-                className="font-medium hover:border-b transition"
+                className="font-medium hover:border-b transition"         
               >
                 Sign in
               </Link>
