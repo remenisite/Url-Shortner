@@ -24,7 +24,8 @@ const apiServices = {
     const res = await api.post("/auth/signin", { email, password });
     return res.data;
   },
-  signup: async (fullName, email, password) => {
+  signup: async (data) => {
+    const { fullName, email, password } = data;
     const res = await api.post("/auth/signup", { fullName, email, password });
     return res.data;
   },

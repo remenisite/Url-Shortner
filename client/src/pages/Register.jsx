@@ -13,14 +13,12 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm()
-  console.log(errors)
-  
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {
+    console.log(data)
+  }
 
-  console.log(watch("example")) // watch input value by passing the name of it
 
   return (
     <section className="">
@@ -29,12 +27,12 @@ const SignUp = () => {
           Create your account
         </h1>
         <div className=" w-[400px] bg-gray-50 shadow-2xs border border-amber-50 rounded-[6px] p-[20px]">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
             {/* Input Fields */}
-            <Input type="text"   {...register("firstName", {required: "Full Name is required"})}   label={"Full Name"}  placeholder={"enter your full name........"}/>
-            <Input  {...register("email", {required: "email is required"} )}    label={"E-mail"}    type="email"     placeholder={"Email"}/>
-            <Input    {...register("password" , {required: "password is required"})}   label={"Password"}        type="password"   placeholder={"Password"} />
-            <Input   label={"Confirm Password"}   type="password"    placeholder={"Confirm password"}    />
+            <Input type="text"   {...register("fullName", {required: "Full Name is required"})} error={errors?.fullName?.message}   label={"Full Name"}  placeholder={"enter your full name........"}/>
+            <Input  {...register("email", {required: "email is required"} )}    label={"E-mail"}  error={errors?.email?.message}   type="email"     placeholder={"Email"}/>
+            <Input    {...register("password" , {required: "password is required"})}  error={errors?.password?.message}  label={"Password"}        type="password"   placeholder={"Password"} />
+            <Input   label={"Confirm Password"}   type="password"    placeholder={"Confirm password"}     />
             <Button type="submit">Create Account</Button>
   
           </form>

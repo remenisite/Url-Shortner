@@ -25,7 +25,7 @@ export default function Navbar() {
           {/* Login */}
           <Link
             to={"/signin"}
-            className="text-[18px] font-normal font-main text-white border border-white rounded-full px-3 sm:px-4 py-1.5 hover:text-black hover:bg-green transition"
+            className="text-[18px] font-normal font-main text-white border border-white rounded-xl px-3 sm:px-4 py-1.5 hover:text-black hover:bg-green transition"
           >
             {" "}
             Log In
@@ -34,7 +34,7 @@ export default function Navbar() {
           {/* Sign Up */}
           <Link
             to={"/signup"}
-            className="text-[18px] font-normal font-main text-white border border-white rounded-full px-3 sm:px-4 py-1.5 hover:text-black hover:bg-green transition"
+            className="text-[18px] font-normal font-main text-white border border-white rounded-xl px-3 sm:px-4 py-1.5 hover:text-black hover:bg-green transition"
           >
             {" "}
             Sign Up
