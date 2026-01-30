@@ -14,19 +14,22 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+    setError,
+
     formState: { errors },
-  } = useForm()
+  } = useForm();
   const onSubmit = async (data) => {
     try {
-
-      const res = await apiServices.signup(data)
-
-      console.log(res)
-      
+      const res = await apiServices.signup(data);
+      console.log(res);
     } catch (error) {
-      console.log(error)
+      if (error.response.data.message === "User already axixt") {
+       return setError("email", {
+          message: error.response.data.message,
+        });
+      }
     }
-  }
+  };
   return (
     <section className="">
       <div className="container flex flex-col justify-center items-center">
@@ -34,47 +37,46 @@ const SignUp = () => {
           Create your account
         </h1>
         <div className=" w-100 bg-gray-50 shadow-2xs border border-amber-50 rounded-md p-5">
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-4"
+          >
             {/* Input Fields */}
-            <Input type="text"   {...register("fullName", {required: "Full Name is required"})} error={errors?.fullName?.message}   label={"Full Name"}  placeholder={"enter your full name........"}/>
-            <Input  {...register("email", {required: "email is required"} )}    label={"E-mail"}  error={errors?.email?.message}   type="email" placeholder={"Email"}/>
-            <Input    {...register("password" , {required: "password is required"})}  error={errors?.password?.message}  label={"Password"} type="password"   placeholder={"Password"} />
-            <Input   label={"Confirm Password"}   type="password"    placeholder={"Confirm password"}     />
+            <Input
+              type="text"
+              {...register("fullName", { required: "Full Name is required" })}
+              error={errors?.fullName?.message}
+              label={"Full Name"}
+              placeholder={"enter your full name........"}
+            />
+            <Input
+              {...register("email", { required: "email is required" })}
+              label={"E-mail"}
+              error={errors?.email?.message}
+              type="email"
+              placeholder={"Email"}
+            />
+            <Input
+              {...register("password", { required: "password is required" })}
+              error={errors?.password?.message}
+              label={"Password"}
+              type="password"
+              placeholder={"Password"}
+            />
+            <Input
+              label={"Confirm Password"}
+              type="password"
+              placeholder={"Confirm password"}
+            />
             <Button type="submit">Create Account</Button>
-  
           </form>
-          <div className="flex items-center gap-2.5 my-7.5">
-            <input id="link" type="checkbox" className="text-[100px]" />
-            <label
-              htmlFor="link"
-              className="text-[14px] font-normal font-main text-main "
-            >
-              I agree with terms & conditions
-            </label>
-          </div>
-          {/* Social Login */}
-          <div className="flex justify-between gap-4 mb-4">
-            <Link
-              to="/"
-              className="flex items-center gap-2 border px-4 py-3 rounded-md text-[12px] font-normal font-main text-main"
-            >
-              <FcGoogle /> Google account
-            </Link>
-            <Link
-              to="/"
-              className="flex items-center gap-2 border px-4 py-3 rounded-md text-[12px] font-normal font-main text-main"
-            >
-              <FaFacebook className="text-blue-600" /> Facebook account
-            </Link>
-          </div>
-
           {/* Sign In Link */}
-          <div className="text-center">
+          <div className="text-center mt-5">
             <p className="text-[15px] font-normal font-main text-main">
               Already have an account?
               <Link
                 to="/signin"
-                className="font-medium hover:border-b transition"         
+                className="font-medium hover:border-b transition"
               >
                 Sign in
               </Link>
