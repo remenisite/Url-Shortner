@@ -20,8 +20,8 @@ api.interceptors.request.use(
 );
 
 const apiServices = {
-  signin: async (email, password) => {
-    const res = await api.post("/auth/signin", { email, password });
+  signin: async (data) => {
+    const res = await api.post("/auth/signin", data);
     return res.data;
   },
   signup: async (data) => {

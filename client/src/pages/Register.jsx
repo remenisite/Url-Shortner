@@ -8,6 +8,7 @@ import { Link } from "react-router";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 import { useForm } from "react-hook-form";
+import { apiServices } from "../api";
 
 const SignUp = () => {
   const {
@@ -15,28 +16,34 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm()
-  const onSubmit = (data) => {
-    console.log(data)
+  const onSubmit = async (data) => {
+    try {
+
+      const res = await apiServices.signup(data)
+
+      console.log(res)
+      
+    } catch (error) {
+      console.log(error)
+    }
   }
-
-
   return (
     <section className="">
       <div className="container flex flex-col justify-center items-center">
-        <h1 className="text-[50px] font-normal font-main text-main mt-[30px] mb-[31px]">
+        <h1 className="text-[50px] font-normal font-main text-main mt-7.5 mb-7.75">
           Create your account
         </h1>
-        <div className=" w-[400px] bg-gray-50 shadow-2xs border border-amber-50 rounded-[6px] p-[20px]">
+        <div className=" w-100 bg-gray-50 shadow-2xs border border-amber-50 rounded-md p-5">
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
             {/* Input Fields */}
             <Input type="text"   {...register("fullName", {required: "Full Name is required"})} error={errors?.fullName?.message}   label={"Full Name"}  placeholder={"enter your full name........"}/>
-            <Input  {...register("email", {required: "email is required"} )}    label={"E-mail"}  error={errors?.email?.message}   type="email"     placeholder={"Email"}/>
-            <Input    {...register("password" , {required: "password is required"})}  error={errors?.password?.message}  label={"Password"}        type="password"   placeholder={"Password"} />
+            <Input  {...register("email", {required: "email is required"} )}    label={"E-mail"}  error={errors?.email?.message}   type="email" placeholder={"Email"}/>
+            <Input    {...register("password" , {required: "password is required"})}  error={errors?.password?.message}  label={"Password"} type="password"   placeholder={"Password"} />
             <Input   label={"Confirm Password"}   type="password"    placeholder={"Confirm password"}     />
             <Button type="submit">Create Account</Button>
   
           </form>
-          <div className="flex items-center gap-[10px] my-[30px]">
+          <div className="flex items-center gap-2.5 my-7.5">
             <input id="link" type="checkbox" className="text-[100px]" />
             <label
               htmlFor="link"
