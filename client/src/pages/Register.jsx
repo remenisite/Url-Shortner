@@ -24,10 +24,13 @@ const SignUp = () => {
       console.log(res);
     } catch (error) {
       if (error.response.data.message === "User already axixt") {
-       return setError("email", {
+        return setError("email", {
           message: error.response.data.message,
         });
       }
+      setError("apiError", {
+        message: error.response.data.message,
+      });
     }
   };
   return (
@@ -68,6 +71,11 @@ const SignUp = () => {
               type="password"
               placeholder={"Confirm password"}
             />
+            {errors?.apiError?.message && (
+              <p className="text-base text-red-500">
+                {errors.apiError.message}
+              </p>
+            )}
             <Button type="submit">Create Account</Button>
           </form>
           {/* Sign In Link */}

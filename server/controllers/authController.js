@@ -15,7 +15,7 @@ const signup = async (req, res) => {
     if (!isvalidPassword(password))
       return res.status(400).send({ message: "give valid password" });
 
-    const exixtingUser = await userSchema.findOne({ emai });
+    const exixtingUser = await userSchema.findOne({ email });
     if (exixtingUser)
       return res.status(400).send({ message: "User already axixt" });
 
