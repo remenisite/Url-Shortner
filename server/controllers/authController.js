@@ -55,8 +55,10 @@ const signin = async (req, res) => {
       id: existingUser._id,
       email: existingUser.email,
     });
-
-    res.cookie("acc_token", token);
+      res.cookie('acc_token', token, {
+    httpOnly: false,
+    secure: false 
+  });
 
     res.status(200).send({ message: "signin sucessfully" });
   } catch (err) {
@@ -68,7 +70,6 @@ const signin = async (req, res) => {
 const getProfile = async (req, res) => {
   try {
     const user = req.user;
-
     const userData = await userSchema.findById(user.id);
     if (!userData) return res.status(404).send("User data not found");
     res.status(200).send(userData);
