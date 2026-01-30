@@ -45,11 +45,11 @@ const signin = async (req, res) => {
     const existingUser = await userSchema.findOne({ email });
 
     if (!existingUser)
-      return res.status(401).send({ message: "User not found!" });
+      return res.status(401).send({ message: "Invalid Request" });
 
     const matchPass = await existingUser.comparePassword(password);
     if (!matchPass)
-      return res.status(401).send({ message: "Incorrect password" });
+      return res.status(401).send({ message: "Invalid Request" });
 
     const token = generateTkn({
       id: existingUser._id,

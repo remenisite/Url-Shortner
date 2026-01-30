@@ -4,24 +4,40 @@ import { IoMailOutline, IoEyeOutline } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { FiPhone, FiMoon } from "react-icons/fi";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 import { useForm } from "react-hook-form";
 import { apiServices } from "../api";
+import { Bounce, toast } from "react-toastify";
 
 const SignUp = () => {
+  const Navigate = useNavigate();
   const {
     register,
     handleSubmit,
     setError,
-
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
     try {
       const res = await apiServices.signup(data);
-      console.log(res);
+
+      toast.success(res.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+
+      setTimeout(() => {
+        Navigate("/signin");
+      }, 2000);
     } catch (error) {
       if (error.response.data.message === "User already axixt") {
         return setError("email", {

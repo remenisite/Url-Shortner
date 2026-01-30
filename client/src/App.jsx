@@ -4,6 +4,9 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Layout from "./components/layout";
 import Home from "./pages/Home";
+  import { ToastContainer } from 'react-toastify';
+
+
 
 const App = () => {
   return (
@@ -16,6 +19,8 @@ const App = () => {
           <Route index element={<Home />} />
         </Route>
       </Routes>
+    <ToastContainer />
+
     </BrowserRouter>
     </>
 

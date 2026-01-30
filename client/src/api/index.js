@@ -20,13 +20,12 @@ api.interceptors.request.use(
 );
 
 const apiServices = {
-  signin: async (data) => {
-    const res = await api.post("/auth/signin", data);
+  signin: async (logindata) => {
+    const res = await api.post("/auth/signin", logindata);
     return res.data;
   },
   signup: async (data) => {
-    const { fullName, email, password } = data;
-    const res = await api.post("/auth/signup", { fullName, email, password });
+    const res = await api.post("/auth/signup", data);
     return res.data;
   },
   getProfile: async () => {
