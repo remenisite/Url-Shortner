@@ -8,6 +8,7 @@ import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 import { useForm } from "react-hook-form";
 import { apiServices } from "../api";
+import { Bounce, toast } from "react-toastify";
 
 const Login = () => {
   const {
@@ -16,20 +17,26 @@ const Login = () => {
     setError,
     formState: { errors },
   } = useForm();
-
-  const handelLogin = async (data) =>{
+  const handelLogin = async (data) => {
     try {
-      const res = await apiServices.signin(data)
-      console.log(res)
+      const res = await apiServices.signin(data);
+      toast.success(res.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
     } catch (error) {
-       setError("apiError", {
-        message: error.response.data.message,
+      setError("apiError", {
+        message: error?.response?.data?.message || "try again",
       });
     }
-        
-  }
-
-
+  };
   return (
     <section className="mt-[200px]">
       <div className="container flex flex-col  justify-center items-center ">
@@ -55,7 +62,9 @@ const Login = () => {
             placeholder={"Password"}
           />
           {errors?.apiError?.message && (
-            <p className="text-base text-red-500 mt-5">{errors.apiError.message}</p>
+            <p className="text-base text-red-500 mt-5">
+              {errors.apiError.message}
+            </p>
           )}
           <div className="flex justify-between items-center my-[20px]">
             <Button type="submit">Sign in</Button>
@@ -67,7 +76,6 @@ const Login = () => {
               Forgot password?
             </Link>
           </div>
-
           {/* Sign Up Link */}
           <div className="text-center">
             <p className="text-[15px] font-normal font-main text-main">

@@ -22,7 +22,6 @@ const SignUp = () => {
   const onSubmit = async (data) => {
     try {
       const res = await apiServices.signup(data);
-
       toast.success(res.message, {
         position: "top-right",
         autoClose: 5000,
@@ -34,7 +33,6 @@ const SignUp = () => {
         theme: "dark",
         transition: Bounce,
       });
-
       setTimeout(() => {
         Navigate("/signin");
       }, 2000);
