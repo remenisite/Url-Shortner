@@ -2,7 +2,7 @@ const { verifyTkn } = require("../utils/helpers");
 
 const isAuth = (req, res, next) => {
   try {
-    const token = req.headers.acc_token;
+    const token = req.headers.authorization;
     const decoded = verifyTkn(token);
     req.user = decoded;
     next();
@@ -15,7 +15,8 @@ const isAuth = (req, res, next) => {
 
 const authMiddle = (req, res, next) => {
   try {
-    const token = req.headers.acc_token;
+    const token = req.headers.authorization;
+    console.log(token)
     const decoded = verifyTkn(token);
     if (!decoded)
       return res.status(400).send({ message: "Unauthorized User" });

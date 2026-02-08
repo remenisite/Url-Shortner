@@ -70,7 +70,7 @@ const signin = async (req, res) => {
 const getProfile = async (req, res) => {
   try {
     const user = req.user;
-    const userData = await userSchema.findById(user.id).select("fullName");
+    const userData = await userSchema.findById(user.id).select("-password -updatedAt");
     if (!userData) return res.status(404).send("User data not found");
     res.status(200).send(userData);
   } catch (error) {

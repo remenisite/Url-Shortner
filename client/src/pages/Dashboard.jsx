@@ -17,9 +17,9 @@ const Dashboard = () => {
     })();
   }, []);
 
-  if (!user) {
-    return <Navigate to="/" />;
-  }
+  // if (!user) {
+  //   return <Navigate to="/" />;
+  // }
 
   return <div>Dashboard</div>;
 };

@@ -16,7 +16,6 @@ const PassApi = () => {
 
     try {
       const res = await urlServices.createShort(longUrl);
-      console.log(res);
       setShortUrl(`http:localhost:8000/${res.urlShort}`);
     } catch (error) {
       console.log(error);
