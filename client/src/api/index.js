@@ -1,5 +1,6 @@
 import axios from "axios";
-import { getCookie } from "../components/utils/Services";
+import { getCookie } from "../components/utils/services";
+
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/",
@@ -20,13 +21,13 @@ api.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-const apiServices = {
-  signin: async (logindata) => {
-    const res = await api.post("/auth/signin", logindata);
+const authServices = {
+  login: async (logData) => {
+    const res = await api.post("/auth/signin", logData);
     return res.data;
   },
-  signup: async (data) => {
-    const res = await api.post("/auth/signup", data);
+  registration: async (registerData) => {
+    const res = await api.post("/auth/signup", registerData);
     return res.data;
   },
   getProfile: async () => {
@@ -41,9 +42,9 @@ const urlServices = {
     return res.data;
   },
   getAll: async () => {
-    const res = await api.post("/url/getAll");
+    const res = await api.get("/url/getAll");
     return res.data;
   },
 };
 
-export { apiServices, urlServices };
+export { authServices, urlServices };

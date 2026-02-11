@@ -1,7 +1,7 @@
 const userSchema = require("../models/userSchema");
 const { generateTkn } = require("../utils/helpers");
 const { isvelidEmail, isvalidPassword } = require("../utils/validation");
-const bcrypt = require("bcrypt");
+
 
 const signup = async (req, res) => {
   try {
@@ -71,7 +71,7 @@ const getProfile = async (req, res) => {
   try {
     const user = req.user;
     const userData = await userSchema.findById(user.id).select("-password -updatedAt");
-    if (!userData) return res.status(404).send("User data not found");
+    if (!userData) return res.status(404).send({message: "User data not found"});
     res.status(200).send(userData);
   } catch (error) {
     res.status(500).send({ message: "Internal server error" });

@@ -19,7 +19,6 @@ const createShortUrl = async (req, res) => {
       user: req.user?.id,
     });
     urlData.save();
-
     res.status(201).send({
       urlLong: urlData.urlLong,
       urlShort: urlData.urlShort,
@@ -33,22 +32,18 @@ const redirectUrl = async (req, res) => {
   try {
     const params = req.params;
 
-    if (!params) return res.status(400).send({ message: "params not found" });
+    if (!params.id) return;
 
     const urlData = await urlSchema.findOne({ urlShort: params.id });
-    if (!urlData)
-      return res.redirect(process.env.CLIENT_URL + urlData.urlShort);
-
-    console.log(urlData);
+     if (!urlData) res.redirect(process.env.CLIENT_URL + urlData.urlShort);
 
     if (urlData.user) {
       urlData.visitHistory.push({ visitTime: Date.now() });
       urlData.save();
     }
-
     res.redirect(urlData.urlLong);
   } catch (error) {
-    res.status(500).send({ message: "Internal server error" });
+     res.redirect(process.env.CLIENT_URL + urlData.urlShort);
   }
 };
 

@@ -14,9 +14,9 @@ const Heading = () => {
           Shortest URLs
         </span>
       </h1>
-      <p className="w-[806px] text-center text-[20px] font-normal font-main text-primary">
-        The world's easiest and smartest link shortener to instantly track,
-        customize, and share your URLs with style.
+      <p className=" text-center text-[20px] font-normal font-main text-primary">
+        The world's easiest and smartest link shortener to instantly track, <br />
+        customize, and share  your URLs with style.
       </p>
     </>
   );

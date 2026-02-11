@@ -5,8 +5,14 @@ import { Outlet } from 'react-router'
 const Layout = () => {
   return (
     <>
-      <Navbar />
-      <Outlet />
+    
+
+    <Navbar />
+    <Outlet />
+    
+    
+    
+    
     </>
   )
 }

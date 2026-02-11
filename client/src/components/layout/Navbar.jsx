@@ -1,11 +1,7 @@
-import {  FiGlobe } from "react-icons/fi";
+import React from "react";
 import { Link } from "react-router";
-import { MdLightMode } from "react-icons/md";
-import { MdNightlight } from "react-icons/md";
 
-
-
-export default function Navbar() {
+const Navbar = () => {
   return (
     <nav className="bg-[#1F1F1F] py-[2px]">
       <div className="container flex items-center justify-between">
@@ -43,4 +39,6 @@ export default function Navbar() {
       </div>
     </nav>
   );
-}
+};
+
+export default Navbar;

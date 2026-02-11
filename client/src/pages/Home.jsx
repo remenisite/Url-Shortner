@@ -1,10 +1,21 @@
-import React from "react";
-import UrlShortner from "../components/ui/UrlShortner";
+import { FiCopy, FiLink } from "react-icons/fi";
+import Button from "../components/ui/Button";
+import Shortner from "../components/utils/Shortner";
+import Steps from "../components/utils/Steps";
+
 
 const Home = () => {
+
+
   return (
-    <div className=" flex justify-center  pt-[100px]  ">
-      <UrlShortner />
+    <div className="conatiner">
+
+
+      <Shortner />
+      
+      <Steps />
+
+
     </div>
   );
 };
