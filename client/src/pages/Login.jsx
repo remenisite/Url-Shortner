@@ -57,7 +57,7 @@ const Login = () => {
         </Button>
 
         <p>
-          do not account? <Link to={"/sinup"}>signup</Link>{" "}
+          do not account? <Link to={"/registration"}>signup</Link>{" "}
         </p>
       </form>
     </div>

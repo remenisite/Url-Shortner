@@ -20,7 +20,7 @@ const Navbar = () => {
 
           {/* Login */}
           <Link
-            to={"/signin"}
+            to={"/login"}
             className="text-[18px] font-normal font-main text-white border border-white rounded-xl px-3 sm:px-4 py-1.5 hover:text-black hover:bg-green transition"
           >
             {" "}
@@ -29,10 +29,9 @@ const Navbar = () => {
 
           {/* Sign Up */}
           <Link
-            to={"/signup"}
+            to={"/registration"}
             className="text-[18px] font-normal font-main text-white border border-white rounded-xl px-3 sm:px-4 py-1.5 hover:text-black hover:bg-green transition"
           >
-            {" "}
             Sign Up
           </Link>
         </div>

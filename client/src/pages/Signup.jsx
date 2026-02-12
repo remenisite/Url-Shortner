@@ -64,7 +64,7 @@ const Signup = () => {
               )}
         <Button type="submit" variant="primary">submit </Button>
         <p>
-          already account? <Link to={"/sinin"}>Login</Link>
+          already account? <Link to={"/login"}>Login</Link>
         </p>
       </form>
     </div>
